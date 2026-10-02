@@ -1,4 +1,4 @@
-# Multi-harness delegation for Claude Code
+# Multi-harness Delegation Mod for Claude Code
 
 A Claude Code mod: Claude Code orchestrates, and Codex, Antigravity, opencode or a local model do the subtasks.
 
