@@ -18,24 +18,15 @@
     },
     "codex": {
       "bin": "codex",
-      "args": [
-        "-a",
-        "never",
-        "-s",
-        "workspace-write"
-      ]
+      "args": []
     },
     "agy": {
       "bin": "agy",
-      "args": [
-        "--dangerously-skip-permissions"
-      ]
+      "args": []
     },
     "opencode": {
       "bin": "opencode",
-      "args": [
-        "--auto"
-      ],
+      "args": [],
       "startup_s": 9
     }
   },
