@@ -6,7 +6,7 @@
   "paste_settle_s": 0.3,
   "harnesses": {
     "pi": {
-      "bin": "/home/usuario/.local/bin/pi",
+      "bin": "pi",
       "args": [
         "--provider",
         "llama-local",
@@ -17,15 +17,15 @@
       ]
     },
     "codex": {
-      "bin": "/home/usuario/.local/bin/codex",
+      "bin": "codex",
       "args": []
     },
     "agy": {
-      "bin": "/home/usuario/.local/bin/agy",
+      "bin": "agy",
       "args": []
     },
     "opencode": {
-      "bin": "/home/usuario/.opencode/bin/opencode",
+      "bin": "opencode",
       "args": []
     }
   },

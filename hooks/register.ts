@@ -1,6 +1,5 @@
 import type { Register } from 'claude-code'
 
-const CONNECTOR = '/home/usuario/projects/know-how/claude-mods/claude-code-multiharness-delegation/bridge/connector.py'
 const PREFIX = 'multiharness-delegation:'
 const TIMEOUT_MS = 600_000
 
@@ -9,7 +8,7 @@ export const register: Register = (on) => {
     if (e.tool !== 'Agent' || !e.subagent_type?.startsWith(PREFIX)) return next(e)
     const harness = e.subagent_type.slice(PREFIX.length)
     const t0 = Date.now()
-    const r = await $.process.run(['python3', CONNECTOR, harness, '--name', e.name ?? 'default'], { stdin: e.prompt, timeoutMs: TIMEOUT_MS })
+    const r = await $.process.run(['python3', `${$.plugin.root}/bridge/connector.py`, harness, '--name', e.name ?? 'default'], { stdin: e.prompt, timeoutMs: TIMEOUT_MS })
     return {
       result: {
         status: 'completed', agentId: `bridge-${harness}-${e.name ?? 'default'}`, agentType: e.subagent_type, prompt: e.prompt,
