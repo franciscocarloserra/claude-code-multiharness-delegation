@@ -2,6 +2,27 @@
 
 Claude Code becomes the orchestrator, and the actual work is done by other agents (Codex, Antigravity, opencode or a local model through pi), each billed to its own subscription or running free on your GPU.
 
+```
+                 ┌──────────────────────────────┐
+   you ────────▶ │  Claude Code (orchestrator)  │  plans, splits work, reads reports
+                 └──────────────┬───────────────┘
+                                │  Agent({ subagent_type: "multiharness-delegation:<harness>" })
+                                ▼
+                 ┌──────────────────────────────┐
+                 │  mod: intercepts the call    │  adds "end with a report" to the prompt
+                 └──────────────┬───────────────┘
+          ┌───────────────┬─────┴─────────┬───────────────┐
+          ▼               ▼               ▼               ▼
+     ┌─────────┐     ┌─────────┐     ┌──────────┐    ┌──────────┐
+     │  codex  │     │   agy   │     │ opencode │    │    pi    │   each one live in tmux:
+     │ ChatGPT │     │ Google  │     │ any API  │    │ local GPU│   tmux attach -t bridge-<harness>-<name>
+     └────┬────┘     └────┬────┘     └────┬─────┘    └────┬─────┘
+          └───────────────┴───────┬───────┴───────────────┘
+                                  ▼
+                 only the final report goes back to Claude
+                 (reasoning and tool calls stay in tmux)
+```
+
 **Why it matters**
 
 - **Save Claude quota.** A normal Claude subagent spends Claude quota. With this mod, Claude only plans and delegates; the heavy lifting runs on your ChatGPT plan (codex), your Google plan (agy), any provider (opencode), or a local model (pi) that costs nothing.
