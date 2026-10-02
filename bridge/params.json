@@ -1,0 +1,37 @@
+{
+  "tmux_prefix": "bridge",
+  "poll_s": 0.5,
+  "timeout_s": 300,
+  "startup_s": 3,
+  "paste_settle_s": 0.3,
+  "harnesses": {
+    "pi": {
+      "bin": "/home/usuario/.local/bin/pi",
+      "args": [
+        "--provider",
+        "llama-local",
+        "--model",
+        "gemma-4-26B-A4B-it-UD-Q3_K_M.gguf",
+        "--thinking",
+        "off"
+      ]
+    },
+    "codex": {
+      "bin": "/home/usuario/.local/bin/codex",
+      "args": []
+    },
+    "agy": {
+      "bin": "/home/usuario/.local/bin/agy",
+      "args": []
+    },
+    "opencode": {
+      "bin": "/home/usuario/.opencode/bin/opencode",
+      "args": []
+    }
+  },
+  "stable_s": 1.5,
+  "report_open": "<<<REPORT",
+  "report_close": "REPORT>>>",
+  "report_instruction": "\n\nWhen done, end your reply with your final report for the caller between a line \"<<<REPORT\" and a line \"REPORT>>>\". Only that part is returned.",
+  "fallback_chars": 1500
+}

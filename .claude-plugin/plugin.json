@@ -1,0 +1,1 @@
+{ "name": "multiharness-delegation", "version": "0.1.0", "description": "Route Agent calls with subagent_type multiharness-delegation:<harness> to an interactive external harness in tmux" }
