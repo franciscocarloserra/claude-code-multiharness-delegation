@@ -1,6 +1,6 @@
 # claude-code-multiharness-delegation
 
-Claude Code becomes the orchestrator, and the actual work is done by other agents (Codex, Antigravity, opencode or a local model through pi), each billed to its own subscription or running free on your GPU.
+Delegate any subtask (writing code, tests, reviews, research, running commands) from Claude Code to whichever harness you want: Codex, Antigravity, opencode, a local model through pi, or any other TUI agent you add in one config line. Claude Code stays the orchestrator; each delegate runs on its own subscription, or for free on your GPU.
 
 ```
                  ┌──────────────────────────────┐
