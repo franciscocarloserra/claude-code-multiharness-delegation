@@ -4,7 +4,7 @@ Delegate to an external harness: call `Agent` with `subagent_type: "multiharness
 
 Rules:
 - Same `name`, same tmux session (`bridge-<harness>-<name>`): use it to continue a conversation.
-- The answer is only the text between `<<<REPORT` and `REPORT>>>`. If the markers are missing you get the tail of the pane: say so, don't make up the rest.
+- The answer is only the text between the `report_open` and `report_close` lines (`BEGIN_REPORT` / `END_REPORT`, see params.json). If the markers are missing you get the tail of the pane: say so, don't make up the rest.
 - On timeout, report the tmux session to the user; do not retry on your own.
 - Never kill a `bridge-*` tmux session: the user may be inside it.
 

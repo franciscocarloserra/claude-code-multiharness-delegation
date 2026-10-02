@@ -19,6 +19,13 @@ def closes(text, p):
     return sum(clean(l) == p["report_close"] for l in text.splitlines())
 
 
+def submit(s, prompt, p):
+    tmux("load-buffer", "-b", s, "-", input=prompt)
+    tmux("paste-buffer", "-p", "-d", "-b", s, "-t", s)
+    time.sleep(p["paste_settle_s"])
+    tmux("send-keys", "-t", s, "Enter")
+
+
 def run(harness, prompt, name, cwd, p):
     h = p["harnesses"][harness]
     s = f'{p["tmux_prefix"]}-{harness}-{name}'
@@ -27,10 +34,15 @@ def run(harness, prompt, name, cwd, p):
         time.sleep(h.get("startup_s", p["startup_s"]))
 
     seen = closes(pane(s), p)
-    tmux("load-buffer", "-b", s, "-", input=prompt)
-    tmux("paste-buffer", "-p", "-d", "-b", s, "-t", s)
-    time.sleep(p["paste_settle_s"])
-    tmux("send-keys", "-t", s, "Enter")
+    # A first-run dialog (e.g. "trust this folder?") or a slow TUI can eat the paste:
+    # resend while the prompt's first line has not shown up once more in the pane.
+    probe = next((l.strip() for l in prompt.splitlines() if l.strip()), "")[:p["echo_probe_chars"]]
+    for _ in range(1 + p["submit_retries"]):
+        before = pane(s).count(probe)
+        submit(s, prompt, p)
+        time.sleep(p["submit_check_s"])
+        if pane(s).count(probe) > before:
+            break
 
     deadline = time.time() + p["timeout_s"]
     while time.time() < deadline:

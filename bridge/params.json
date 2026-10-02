@@ -18,20 +18,33 @@
     },
     "codex": {
       "bin": "codex",
-      "args": []
+      "args": [
+        "-a",
+        "never",
+        "-s",
+        "workspace-write"
+      ]
     },
     "agy": {
       "bin": "agy",
-      "args": []
+      "args": [
+        "--dangerously-skip-permissions"
+      ]
     },
     "opencode": {
       "bin": "opencode",
-      "args": []
+      "args": [
+        "--auto"
+      ],
+      "startup_s": 9
     }
   },
   "stable_s": 1.5,
-  "report_open": "<<<REPORT",
-  "report_close": "REPORT>>>",
-  "report_instruction": "\n\nWhen done, end your reply with your final report for the caller between a line \"<<<REPORT\" and a line \"REPORT>>>\". Only that part is returned.",
-  "fallback_chars": 1500
+  "report_open": "BEGIN_REPORT",
+  "report_close": "END_REPORT",
+  "report_instruction": "\n\nWhen done, end your reply with your final report for the caller between a line \"BEGIN_REPORT\" and a line \"END_REPORT\". Only that part is returned.",
+  "fallback_chars": 1500,
+  "submit_retries": 1,
+  "submit_check_s": 3,
+  "echo_probe_chars": 40
 }

@@ -24,4 +24,4 @@ One entry in `bridge/params.json` plus `agents/<harness>.md`.
 
 ## Status
 
-Proof of concept. Tested: pi + local gemma. Plugin name is `multiharness-delegation` (`claude-*` names are reserved).
+Proof of concept. Tested (2026-10-02): pi + local gemma and agy work end to end; codex untested (quota exhausted); opencode does not submit the prompt inside tmux (Enter ignored, unresolved). Plugin name is `multiharness-delegation` (`claude-*` names are reserved).
